@@ -1,0 +1,142 @@
+@import "tailwindcss";
+
+/* กำหนด Fredoka เป็นฟอนต์ภาษาอังกฤษหลักทั้งหน้าเว็บ + Prompt สำหรับภาษาไทย */
+body {
+  font-family: "Fredoka", "Prompt", sans-serif;
+  letter-spacing: 0.015em;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* หัวข้อและป้ายต่าง ๆ ให้ฟอนต์หนาชัดเจนขึ้น */
+h1,
+h2,
+h3,
+h4,
+.vinyl-title,
+.tag-pill,
+.robot-avatar span {
+  font-family: "Fredoka", "Prompt", sans-serif;
+  letter-spacing: 0.02em;
+}
+
+/* พื้นหลังไล่เฉดสีม่วง-ฟ้าสไตล์โปสเตอร์ไวนิล */
+.vinyl-bg {
+  background: linear-gradient(
+    180deg,
+    #7c3aed 0%,
+    /* ม่วงเข้มด้านบน */ #9333ea 12%,
+    /* ม่วงสด */ #c084fc 25%,
+    /* ม่วงอ่อน */ #e0e7ff 42%,
+    /* ฟ้านวล */ #f5f3ff 60%,
+    /* ขาวอมม่วงอ่อน */ #faf5ff 100%
+  );
+  background-attachment: fixed;
+}
+
+/* ข้อความหัวข้อไล่เฉดสีรุ้งเรืองแสงเหมือนป้ายไวนิล */
+.vinyl-title {
+  background: linear-gradient(
+    135deg,
+    #38bdf8 0%,
+    /* ฟ้า Cyan */ #a855f7 45%,
+    /* ม่วง */ #ec4899 75%,
+    /* ชมพู */ #06b6d4 100% /* เขียวอมฟ้า */
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 8px rgba(255, 255, 255, 0.7));
+}
+
+/* แถบแคปซูลรวมจุดเด่น */
+.capsule-bar {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+}
+
+/* ป้ายลูกศร SCAN ME */
+.scan-arrow-badge {
+  clip-path: polygon(0% 0%, 88% 0%, 100% 50%, 88% 100%, 0% 100%);
+  padding-right: 1.25rem;
+}
+
+/* กล่องรายการขั้นตอน SMART Journey */
+.journey-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: #fafaf9;
+  padding: 0.5rem 0.75rem;
+  border-radius: 1rem;
+  border: 1px solid #f0eeee;
+}
+
+.step-num {
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 9999px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* กล่องความสามารถหลัก (Capabilities) */
+.capability-box {
+  background-color: #ffffff;
+  border-radius: 1.25rem;
+  padding: 0.875rem;
+  border: 1px solid #f3e8ff;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+/* ช่อง Placeholder สำหรับใส่ Icon หรือ 3D Asset */
+.icon-slot {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 0.75rem;
+  background-color: #faf5ff;
+  border: 1px dashed #d8b4fe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.icon-slot img,
+.icon-slot svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  object-fit: contain;
+}
+
+/* ช่องสำหรับใส่ Logo ในส่วน Technology Architecture */
+.tech-icon-slot {
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 0.625rem;
+  background-color: #f5f5f4;
+  border: 1px solid #e7e5e4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+
+.tech-icon-slot:hover {
+  transform: translateY(-2px);
+}
+
+.tech-icon-slot img,
+.tech-icon-slot svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  object-fit: contain;
+}
