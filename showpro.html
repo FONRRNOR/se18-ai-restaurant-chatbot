@@ -36,40 +36,63 @@
                 </span>
             </div>
 
-            <!-- Right Side -->
-            <div class="flex items-center gap-1 shrink-0">
+            <!-- Right Side (เพิ่มปุ่ม toggleAdminBtn ตรงนี้) -->
+            <div class="flex items-center gap-2 shrink-0">
                 <span
                     class="text-[13px] sm:text-[13px] font-bold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200 whitespace-nowrap tracking-tight">
                     CAMT CMU
                 </span>
+
+                <!-- ปุ่มเปิด/ปิด แผงตั้งค่า URL -->
+                <button id="toggleAdminBtn" type="button"
+                    class="text-[11px] font-bold text-stone-600 bg-stone-100 hover:bg-stone-200 border border-stone-300 px-2 py-0.5 rounded-md transition-colors">
+                    Config
+                </button>
             </div>
         </div>
     </header>
 
     <!-- Cloudflare Tunnel Quick Settings Panel -->
-    <div id="adminPanel" class="hidden bg-stone-900 text-white border-b border-stone-800">
-        <div class="max-w-4xl mx-auto px-4 py-3 space-y-2">
+    <div id="adminPanel" class="hidden bg-stone-900 text-white border-b border-stone-800 transition-all">
+        <div class="max-w-4xl mx-auto px-4 py-3 space-y-3">
             <div class="flex items-center justify-between">
                 <p class="text-[13px] font-bold text-emerald-400 uppercase tracking-wider">
                     Cloudflare Tunnel URL Configuration
                 </p>
-                <span class="text-[10px] text-stone-400">Auto-saved to local browser storage</span>
+                <button id="closeAdminBtn"
+                    class="text-xs text-stone-400 hover:text-white px-2 py-0.5 rounded border border-stone-700">
+                    Close
+                </button>
             </div>
-            <p class="text-xs text-stone-300 leading-relaxed">
-                If the tunnel restarts with a new domain, paste the updated URL here to sync the demo:
-            </p>
-            <div class="flex flex-col sm:flex-row gap-2 pt-1">
-                <input id="customUrlInput" type="url" placeholder="https://xxxx.trycloudflare.com"
+
+            <!-- STEP 1: Passcode Verification Box (แสดงถ้ายังไม่ปลดล็อก) -->
+            <div id="passcodeContainer" class="flex flex-col sm:flex-row gap-2 pt-1">
+                <input id="adminPasscodeInput" type="password" placeholder="Enter access code to unlock settings"
                     class="w-full bg-stone-800 border border-stone-700 text-white text-xs px-3 py-2 rounded-xl outline-none focus:border-emerald-500 font-mono" />
-                <div class="flex gap-2">
-                    <button id="saveUrlBtn"
-                        class="flex-1 sm:flex-none bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-4 py-1.5 rounded-xl transition-transform active:scale-95">
-                        Save
-                    </button>
-                    <button id="resetUrlBtn"
-                        class="flex-1 sm:flex-none bg-stone-800 hover:bg-stone-700 text-stone-300 text-xs font-bold px-4 py-1.5 rounded-xl border border-stone-700 active:scale-95">
-                        Reset
-                    </button>
+                <button id="unlockAdminBtn"
+                    class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-4 py-2 rounded-xl transition-transform active:scale-95 whitespace-nowrap">
+                    Unlock Settings
+                </button>
+            </div>
+
+            <!-- STEP 2: URL Config Form (ปลดล็อกเมื่อกรอก fornor4056 ถูกต้อง) -->
+            <div id="urlConfigContainer" class="hidden space-y-2">
+                <p class="text-xs text-stone-300 leading-relaxed">
+                    Paste the updated Cloudflare Tunnel URL here to sync the live store & QR code:
+                </p>
+                <div class="flex flex-col sm:flex-row gap-2">
+                    <input id="customUrlInput" type="url" placeholder="https://xxxx.trycloudflare.com"
+                        class="w-full bg-stone-800 border border-stone-700 text-white text-xs px-3 py-2 rounded-xl outline-none focus:border-emerald-500 font-mono" />
+                    <div class="flex gap-2">
+                        <button id="saveUrlBtn"
+                            class="flex-1 sm:flex-none bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-4 py-1.5 rounded-xl transition-transform active:scale-95">
+                            Save
+                        </button>
+                        <button id="resetUrlBtn"
+                            class="flex-1 sm:flex-none bg-stone-800 hover:bg-stone-700 text-stone-300 text-xs font-bold px-4 py-1.5 rounded-xl border border-stone-700 active:scale-95">
+                            Reset
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
