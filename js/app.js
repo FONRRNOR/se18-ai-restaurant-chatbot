@@ -1,10 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
+
     // 1. ค่าเริ่มต้นพื้นฐาน และรหัสผ่านยืนยันสิทธิ์
     const DEFAULT_CONFIG = {
         cloudflareUrl: "https://spoke-vessel-funeral-commitment.trycloudflare.com",
-        restaurantId: "e8c56271-419b-4c4c-8119-df41846cfa82",
+        restaurantId: "7c4e8a21-6f35-4b92-a1d7-5e8c3f204b69",
         tableNumber: "01",
     };
+
     const ACCESS_KEY = "fornor4056";
 
     // 2. ดึงค่า URL จาก LocalStorage
@@ -23,7 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const urlConfigContainer = document.getElementById("urlConfigContainer");
     const adminPasscodeInput = document.getElementById("adminPasscodeInput");
     const unlockAdminBtn = document.getElementById("unlockAdminBtn");
-
     const customUrlInput = document.getElementById("customUrlInput");
     const saveUrlBtn = document.getElementById("saveUrlBtn");
     const resetUrlBtn = document.getElementById("resetUrlBtn");
@@ -31,7 +32,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // 3. ฟังก์ชันสร้างเป้าหมาย URL พร้อมวาด QR Code ใหม่
     function renderTargetUrls(baseUrl) {
         const cleanBaseUrl = baseUrl.replace(/\/+$/, "");
-        const targetOrderUrl = `${cleanBaseUrl}/customer/menu/mobile?restaurantId=${DEFAULT_CONFIG.restaurantId}&tableId=${DEFAULT_CONFIG.tableNumber}`;
+
+        const targetOrderUrl =
+            `${cleanBaseUrl}/customer/menu/mobile?restaurantId=${DEFAULT_CONFIG.restaurantId}&tableId=${DEFAULT_CONFIG.tableNumber}`;
 
         if (demoButton) {
             demoButton.href = targetOrderUrl;
@@ -39,6 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (qrContainer && typeof QRCode !== "undefined") {
             qrContainer.innerHTML = "";
+
             new QRCode(qrContainer, {
                 text: targetOrderUrl,
                 width: 125,
@@ -52,6 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // เรียกทำงานครั้งแรก
     renderTargetUrls(activeCloudflareUrl);
+
     if (customUrlInput) {
         customUrlInput.value = activeCloudflareUrl;
     }
@@ -69,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 5. ปลดล็อกแผงตั้งค่าเมื่อกรอกรหัสผ่าน fornor4056 ถูกต้อง
+    // 5. ปลดล็อกแผงตั้งค่า
     if (unlockAdminBtn && adminPasscodeInput) {
         const handleUnlock = () => {
             const enteredKey = adminPasscodeInput.value.trim();
@@ -78,6 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 passcodeContainer.classList.add("hidden");
                 urlConfigContainer.classList.remove("hidden");
                 adminPasscodeInput.value = "";
+
                 if (customUrlInput) {
                     customUrlInput.focus();
                 }
@@ -89,6 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         unlockAdminBtn.addEventListener("click", handleUnlock);
+
         adminPasscodeInput.addEventListener("keydown", (e) => {
             if (e.key === "Enter") {
                 handleUnlock();
@@ -119,8 +126,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (resetUrlBtn && customUrlInput) {
         resetUrlBtn.addEventListener("click", () => {
             localStorage.removeItem("override_cloudflare_url");
+
             activeCloudflareUrl = DEFAULT_CONFIG.cloudflareUrl;
             customUrlInput.value = DEFAULT_CONFIG.cloudflareUrl;
+
             renderTargetUrls(DEFAULT_CONFIG.cloudflareUrl);
 
             alert("รีเซ็ตค่ากลับเป็น URL เริ่มต้นเรียบร้อยแล้ว");
